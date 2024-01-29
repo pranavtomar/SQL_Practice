@@ -1,0 +1,568 @@
+1. Assignment on Selection in Python - Level 2
+
+ #lex_auth_012693780491968512136
+
+def make_amount(rupees_to_make,no_of_five,no_of_one):
+    five_needed=0
+    one_needed=0
+    
+    if(no_of_five < 0 and no_of_one < 0):
+       print(-1)
+    else:
+        while(rupees_to_make >= 5):
+          rupees_to_make -= 5
+          no_of_five -= 1
+          five_needed += 1
+          if(no_of_five <= 0):
+             break
+        if(rupees_to_make <= no_of_one):
+           one_needed = rupees_to_make
+           print("No. of Five needed :", five_needed)
+           print("No. of One needed  :", one_needed)
+        else:
+           print(-1)
+      
+    #print("No. of Five needed :", five_needed)
+    #print("No. of One needed  :", one_needed)
+    #print(-1)
+
+
+#Provide different values for rupees_to_make,no_of_five,no_of_one and test your program
+make_amount(28,8,5)
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+2.def calculate_bill_amount(food_type,quantity_ordered,distance_in_kms):
+    bill_amount=0
+    #write your logic here
+    
+    delivery_charge = 0
+    if distance_in_kms > 6:
+        delivery_charge = (distance_in_kms - 6) * 6 + 9
+    elif distance_in_kms > 3:
+        delivery_charge = (distance_in_kms - 3) * 3
+    elif distance_in_kms > 0:
+        delivery_charge = 0
+    
+    if((food_type != "V" and food_type != "N") or quantity_ordered < 1 or distance_in_kms <= 0):
+        bill_amount = -1
+    else:
+        if food_type == 'V':
+           cost_per_plate = 120
+        else:
+           cost_per_plate = 150
+        bill_amount = cost_per_plate * quantity_ordered + delivery_charge
+    
+    return bill_amount
+
+#Provide different values for food_type,quantity_ordered,distance_in_kms and test your program
+bill_amount=calculate_bill_amount("N",2,7)
+print(bill_amount)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.def solve(heads,legs):
+    error_msg="No solution"
+    chicken_count=0
+    rabbit_count=0
+
+    #Start writing your code here
+    if legs % 2 != 0 or heads > legs:
+       print(error_msg)
+    else:
+       rabbit_count = int((legs - 2 * heads)/2)
+       chicken_count = int(heads - rabbit_count)
+       print(chicken_count,rabbit_count)
+    
+
+#Provide different values for heads and legs and test your program
+solve(38,131)
+
+4. Assignment on Nested Iteration - Level 2
+ 
+def digit_sum(n):
+    sum_of_digits = 0
+    while n > 0:
+        sum_of_digits += n % 10
+        n //= 10
+    return sum_of_digits   
+
+
+def find_max(num1, num2):
+    digits_sum = 0
+    # Write your logic here
+    if(num2 > num1):
+        result_list = []
+        for num in range(num1,num2+1):
+            if num%5==0 and len(str(num)) == 2 and digit_sum(num) % 3 == 0:
+               result_list.append(num)
+               
+        if not result_list:
+           return -1
+    else:
+       return -1
+       
+    return max(result_list)
+
+#Provide different values for num1 and num2 and test your program.
+max_num=find_max(10,15)
+print(max_num)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Exercise on Math Library - Level 1
+
+import math
+def find_number_of_combination(number_of_flavours):
+    total_combination=0
+    n = number_of_flavours
+    x = math.factorial(n)
+    #write your logic here
+    for r in range(n+1):
+        y = math.factorial(r)
+        z = math.factorial(n-r)
+        c = x/(y*z)
+        total_combination += c
+    return total_combination
+
+
+#Provide different values for number_of_flavours and test your program
+number_of_combination=find_number_of_combination(6)
+print(number_of_combination)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Custom Exception:-
+
+--when the exception situation occurs, then exception throw manually
+--Here we are going to create new exception class or child of exceptions
+--raise keyword is used to throw custom exception
+
+Relationship:
+	Relationship is thing that can able to make two or more classes or objects communicate with each other.
+
+types of relationship:
+	1) Aggregation(has-a):- It is one type of relationship, which has strong in relationship and we accesss each number of other class in my class
+	2) Association(used-to):- -> weak relationship and their no owner class
+					  -> accessibility to particular class method only
+	3) Composite :- It is one type of relationship which enables creating of other types and which has strong in relationship and we access each member of other class in my class. 
+	4) Inheritance :- It is (Is-A) relationship, in which one class can inherits the member of other class.
+
+	Types of Inheritance:-
+		1.Multiple
+		2.single
+		3.Multilevel or Hirerarchical
+		4.Hybrid
+
+
+
+
+
+
+
+SQL:- 
+
+
+Practice Problem 1
+-------------------
+1. select guestid, guestname as "GUEST_NAME" from guest where membershiptype='Privileged' and substr(guestid,4) > 1
+2. select guestid, sum(amount) TOTAL_AMOUNT from booking where amount > 3000 group by guestid having count(guestid) >= 2;
+3.select distinct (h1.hotelid), h1.hotelname from hotel h1 inner join hotel h2 on h1.city = h2.city where h1.hotelid<>h2.hotelid;
+4.select bookingid, hotelid, amount from booking where amount >(select avg(amount) from booking) and roomtype = 'Double';
+
+
+Practice Problem 2
+----------------------
+1.SELECT customerid||'-'||customername AS CUSTOMER_DETAIL, city FROM CUSTOMER WHERE city LIKE '__i%' and length(customername) > 4;
+2. select cabtype, count(cabtype) as CABS from cab where substr(cabid,4) >= 2 group by cabtype having count(cabtype) > 3;
+3. select distinct (c1.cabid), c1.cabname from cab c1 inner join cab c2 on c1.cabtype = c2.cabtype where c1.cabid <> c2.cabid;
+4. select rideid, customerid, fare from Ride where distance > 35 and fare > (select avg(fare) from Ride);
+
+
+Practice Problem 3
+-------------------
+1. select cameraid||'-'||brand as "CAMERA-NAME", resolution from camera where quantityavailable >= 35 and length(brand) > 4;
+2. select cameraid, brand, price from camera where brand not like '_a%' and price >= (select avg(price) from camera);
+3. select distinct(c1.customername), c1.city from customer c1 inner join customer c2 on c1.city=c2.city where c1.customerid <> c2.customerid
+4. select cameraid, brand, price from camera where brand not like '_a%' and price >= (select avg(price) from camera);
+
+
+
+
+Exercise 3
+Create table Match(
+MId	INTEGER ,
+TId INTEGER references tournament(TId),
+Player1 INTEGER references Player(PId),
+Player2 Integer references Player(PId),
+check(Player1 <> Player2),
+MatchDt	DATE NOT NULL,
+Winner INTEGER references Player(PId),
+Score VARCHAR2(30) NOT NULL, 
+PRIMARY KEY(MId, TId)
+);
+
+Exercise 29 : GROUP BY
+select to_char(sldate,'Month') month, count(saleId) number_sale from sale group by to_char(sldate,'Month') order by count(saleId) desc;
+
+Exercise 11: 
+select Prodid, sum(quantity) qty_sold from Saledetail where quantity > 1 group by category having count(category);
+
+Assignment 46 
+select pymtmode, count(pymtmode) PYMTCOUNT from orders where to_char(orderdate,'YYYY')<2015 group by pymtmode having count(pymtmode)>1;
+
+Exercise 61 : Independent Subquery
+select p.prodid, pdesc, quantity from product p inner join salesdetail s on p.prodid=s.prodid group by p.prodid, pdesc having sum(quantity) = (select min(sum(quantity)) from saledetail group by prodid);
+
+Assignment 1-->
+create table article(
+ArCode char(5) primary key check(ArCode LIKE 'A%'),
+ArName varchar2(30) not null,
+Rate number(8,2),
+Quantity number(4) default 0 check(quantity >= 0),
+class char(1) check(class in('A','B','C'))
+);
+
+
+create table Bill(
+BillNo number primary key,
+storename varchar2(20) references store(storename),
+shopperid number references shopper(shopperId),
+arcode char(5) references Article(Arcode),
+amount number,
+BillDate Date,
+quantity number(4) Default 1 check(quantity > 0)
+);
+
+Assignment 5
+------------
+CREATE TABLE Store(
+    Name VARCHAR2(20) PRIMARY KEY,
+    Location VARCHAR2(30) NOT NULL,
+    ManagerName VARCHAR2(30) UNIQUE
+);
+
+Assignment 17
+-------------
+INSERT INTO Store VALUES('Loyal World', 'Infy Campus, Mysore', 'Rohan Kumar');
+
+Assignment 19 : Mandatory
+----------------------
+insert into Supplier values(
+'S501','Avaya Ltd',9012345678,'Mysore'
+);
+
+
+Assignment 3
+--------------------
+select descr, price from Item where descr LIKE '%Hard disk';
+
+
+Assignment 4
+-----------------
+select quotationid, sname, itemcode, quotedprice, qdate, qstatus from quotation where qstatus not in ('Accepted')
+
+Assignment 5
+-----------------
+select designation, salary from empdetails where designation in ('Manager','Billing Staff');
+
+Assignment 6
+---------------
+select Roid,Location from Retailoutlet where Managerid is NULL;
+
+Assignment 7
+--------------
+select orderid, quotationid, status from Orders where Orderdate between '1-Dec-2014' and '1-Jan-2015';
+
+Assignment 25 : Mandatory
+----------------------------
+SELECT itemcode, descr, price FROM Item WHERE descr LIKE '%Skirt' OR descr LIKE '%Shirt' AND category = 'B';
+
+Assignment 26 : Mandatory
+----------------------------
+select distinct designation , salary from Empdetails;
+
+
+Assignment 27 : Mandatory
+----------------------------
+select itemcode, descr, price from Item;
+
+Assignment 28 : Mandatory
+-----------------------------
+select quotationid, sname from quotation where qstatus in('Accepted' , 'Rejected');
+
+Assignment 29 : Mandatory
+----------------------------
+select itemcode, descr, price from Item where descr LIKE '_r%';
+
+Assignment 30 : Mandatory
+---------------------------
+select distinct itemtype from Item;
+
+Assignment 31 : Mandatory
+---------------------------
+select orderid, quotationid, status, pymtdate from Orders where PYMTMODE is NULL;
+
+Assignment 32 : Mandatory
+---------------------------
+select distinct itemtype, category from item
+
+Assignment 33 : Mandatory
+--------------------------
+select empid, salary "Current Salary", salary*1.1 "New Salary", salary*0.1  "Incremented Amount" from Empdetails;
+
+Assignment 34 : Mandatory
+-----------------------------
+insert into City(City) values('Mysore');
+
+Assignment 35 : Optional
+-----------------------------
+insert into Address values(
+350,'Electronics City','Mysore',570018,'Karnataka'
+);
+
+Assignment 36 : Optional
+--------------------------
+insert into Article values(
+'A1002', 'Keyboard', 1000, 10, 'B'
+);
+
+
+Assignment 37 : Optional
+---------------------------
+select quotationid, qdate, quotedprice from quotation where QUOTEDPRICE > 1400 and QUOTEDPRICE < 2150;
+
+
+Assignment 38 : Optional
+------------------------------
+select itemtype, descr, price from Item where price > 4000;
+
+Assignment 39 : Optional
+----------------------------
+select designation, salary from Empdetails where salary between  2500 and 5000;
+
+Exercise 22 : Delete
+-----------------------
+delete from saledetail where quantity > 5;
+
+Exercise 6
+-----------
+delete from SaleDetail where saleid = 1004;
+
+Exercise 23 : Functions
+------------------------
+SELECT prodid, pdesc, category from product where LOWER(category) = 'electronics';
+
+Exercise 24 : Functions
+------------------------
+SELECT prodid, substr(pdesc,1,5) as PDESC_FIVE, category from product;
+
+Exercise 25 : Functions
+------------------------
+select count(Amount) as SALE_COUNT from sale;
+
+Exercise 26 : Functions
+------------------------
+SELECT NVL(Pdesc,'No Description') Pdesc, discount from product;
+
+Exercise 27 : ORDER BY
+-------------------------
+SELECT prodid, category, price, discount FROM  Product ORDER BY CATEGORY DESC, PRICE ASC
+
+Exercise 10
+------------
+SELECT prodid, category, discount FROM product where category = 'Sports'or category = 'Apparel' ORDER BY  category asc, discount asc;
+
+Collaborative Assignment 42
+----------------------------
+select orderid, round(MONTHS_BETWEEN(PYMTDATE,ORDERDATE),2) "No of Months" FROM Orders where MONTHS_BETWEEN(PYMTDATE,ORDERDATE) > 0.1 and Amountpaid is not null
+
+Collaborative Assignment 43
+----------------------------
+select empid, salary "Current Salary", salary*1.2 "New Salary", round(salary*0.2,2) "Incremented Amount" from Empdetails where designation = 'Manager';
+
+Collaborative Assignment 44
+-----------------------------
+SELECT itemcode FROM item where  ABS(QTYONHAND-REORDERLEVEL) > 50;
+
+Exercise 31 : Functions
+------------------------
+SELECT prodid, pdesc, price "Old_Price", Round(price*0.775,2) "New_Price" FROM Product where category = 'Sports';
+
+Exercise 32 : Functions
+--------------------------
+SELECT Saleid, ABS(Round(MONTHS_BETWEEN(Sldate,SYSDATE),1)) as "MONTH_AGED" from Sale;
+
+Exercise 33 : Functions
+------------------------
+select round(avg(price),2) "Avg", min(price) "Min", max(price) "Max", count(*) "Total" from product;
+
+Exercise 34 : Functions
+------------------------
+SELECT CONCAT(CONCAT(Sname,' is from '),Location) "RESULT" FROM salesman;
+
+Exercise 35 : Functions
+-------------------------
+SELECT TO_CHAR(TO_DATE('Jan/10/2015', 'MM/DD/YYYY'),'Month') "MONTH", To_Number('2,50,000','999999') "AMOUNT" from dual;
+
+Exercise 36 : ORDER BY
+-----------------------
+select Prodid, Pdesc, Price from Product order by price DESC, Prodid DESC;
+
+Exercise 37 : ORDER BY
+------------------------
+select Prodid, Pdesc, Price from Product order by Pdesc ASC;
+
+Assignment 51 : Mandatory
+--------------------------
+SELECT EmpId, EmpName, Salary,
+case
+    when designation = 'Administrator' then salary*1.1
+    when designation = 'Manager' then salary*1.05
+    when designation = 'Billing Staff' then salary*1.2
+    when designation = 'Security' then salary*1.25
+    else Salary*1.02
+END  AS  "INCREASEDSALARY"
+FROM EMPDETAILS
+
+Assignment 52 : Mandatory
+--------------------------
+select EmpId, Salary,
+case
+    when salary < 2500 then 'Class 3'
+    when salary >= 2500 and salary <= 5000 then 'Class 2'
+    when salary > 5000 then 'Class 1'
+End AS SALGRADE
+from empdetails
+
+Assignment 53 : Mandatory
+--------------------------
+select Itemcode, Price "Old Price", Round(price*0.745,2) "New Price" from Item where ItemType = 'FMCG';
+
+Assignment 54 : Mandatory
+--------------------------
+Select Empid, Empname, Worksin from Empdetails where designation = 'Billing Staff';
+
+Assignment 8
+--------------
+select OrderId, Status, NVL(Pymtmode,'Payment yet not done') pymtmode from orders;
+
+Assignment 56 : Mandatory
+--------------------------
+select descr from Item where length(descr) > 15;
+
+Assignment 57 : Mandatory
+--------------------------
+SELECT SUBSTR(ROID,2) AS NUMERICROID FROM Retailoutlet;
+
+Assignment 58 : Mandatory
+--------------------------
+SELECT TO_CHAR(SYSDATE, 'Mon/DD/YYYY Day') AS CURRENTDATE FROM dual;
+
+Assignment 9
+-------------
+SELECT COUNT(QTYORDERED) totalorderscount, COUNT(AMOUNTPAID) AS PAIDORDERSCOUNT FROM Orders;
+
+Assignment 60 : Optional
+-------------------------
+SELECT ORDERID, ABS(PYMTDATE-ORDERDATE) NOOFDAYS FROM ORDERS;
+
+Assignment 61 : Optional
+-------------------------
+SELECT COUNT(DISTINCT  ITEMTYPE) NOOFITEMTYPES FROM ITEM;
+
+Assignment 10
+--------------
+SELECT MAX(SALARY) MAXSAL, MIN(SALARY) 	MINSAL, SUM(SALARY) TOTALSAL, AVG(SALARY) AVGSAL FROM EMPDETAILS;
+
+Assignment 64 : Optional
+-------------------------
+SELECT COUNT(Itemtype) NOOFITEMS FROM ITEM
+
+Assignment 65 : Optional
+-------------------------
+SELECT Orderid, MONTHS_BETWEEN(Orderdate,Pymtdate) AS 
+"No of Months" FROM Orders;
+
+Assignment 66 : Optional
+-------------------------
+SELECT SUM(Quotedprice) TotalPrice from Quotation where QStATUS = 'Accepted' and SUBSTR(TO_CHAR(QDATE,'MON'),1,3) = 'JUN';
+// BOTH ARE CORRECT
+SELECT SUM(Quotedprice) TotalPrice from Quotation where QStATUS = 'Accepted' and TO_CHAR(QDATE,'MON') = 'JUN';
+
+Exercise 29 : GROUP BY
+-----------------------
+Select To_Char(sldate,'Month') Month, count(To_Char(sldate,'Month')) NUMBER_SALE from Sale group by To_Char(sldate,'Month') order by count(To_Char(sldate,'Month')) desc;
+
+Exercise 11
+------------
+select prodid, sum(quantity) as "QTY_SOLD" from Saledetail  group by PRODID
+
+**Exercise 11
+--------------
+SELECT Prodid, SUM(Quantity) "QTY_SOLD" FROM Saledetail  WHERE Quantity>1 GROUP BY Prodid HAVING COUNT(Prodid) > 1;
+
+Collaborative Assignment 41
+----------------------------
+select TO_CHAR(Qdate,'Month') as MONTH, count(TO_CHAR(Qdate,'Month')) QUOTATIONCOUNT from Quotation group by To_Char(qdate,'Month') order by count(To_Char(qdate,'Month')) desc;
+// BOTH ARE CORRECT
+select TO_CHAR(Qdate,'Month') as MONTH, count(TO_CHAR(Qdate,'Month')) QUOTATIONCOUNT from Quotation group by To_Char(qdate,'Month');
+
+Exercise 12
+-------------
+select location, count(location) NUMBER_SMAN from Salesman group by location;
+
+Exercise 39 : GROUP BY
+-----------------------
+select category from product group by category having count(category) > 1;
+
+Assignment 11
+--------------
+select itemcode, avg(QTYAVAILABLE) as "Average Quantity" from Retailstock group by itemcode having avg(QTYAVAILABLE) < 75;
+
+Assignment 46 : Mandatory
+--------------------------
+select pymtmode, count(AMOUNTPAID) AS PYMTCOUNT from Orders WHERE TO_CHAR(PYMTDATE,'YYYY') < 2015 group by PYMTMODE having count(AMOUNTPAID) > 1;
+
+Assignment 12
+--------------
+SELECT Sname, avg(Quotedprice) "Average quoted price" FROM QUOTATION where QSTATUS = 'Closed' group by Sname having avg(quotedprice) > 500;
+
+Assignment 48 : Mandatory
+--------------------------
+select itemtype, category, round(avg(price),2) "Average item price" from Item where itemtype in ('FMCG', 'Computer') group by itemtype, category having avg(price)<2000;
+
+Assignment 13
+--------------
+SELECT job, avg(sal) AS "Average Salary" FROM Emp WHERE job IN ('MANAGER','ANALYST') GROUP BY job HAVING AVG(sal) > 1500;
+
+Assignment 14
+--------------
+SELECT Job, Deptno, AVG(sal) AVGSALARY FROM Emp WHERE Deptno in (10,20) and sal > 2000 group by Job, Deptno having AVG(sal) > 2500;
+
+Assignment 63 : Optional
+-------------------------
+SELECT Sname, AVG(Quotedprice) "Average quoted price" FROM Quotation WHERE Quotedprice > 1000 and Qstatus = 'Closed' group by Sname having AVG(Quotedprice) < 4500;
+
+Exercise 44 : Joins
+-------------------
+select Id, Ename, Dept, C.Compid, Make from Employee E INNER JOIN Computer C where E.CompId = C.Compid
+
+Collaborative Assignment 67
+----------------------------
+SELECT Id, ENAME, e, d.DNAME FROM EMP e INNER JOIN DEPT d ON e.DEPTNO = d.DEPTNO WHERE e.SAL > 2000;
+
+Exercise 44 : Joins
+--------------------
+SELECT Id, EName, Dept, C.CompId AS CompId, Make FROM Employee E INNER JOIN Computer C ON E.CompId = C.CompId;
+
+Exercise 13
+------------
+select Id, Ename, C.Compid, make from employee E inner join Computer C on C.Compid = E.Compid where Model in ( 'Precision','Edge');
+
+Exercise 14
+------------
+select Dept, count(C.Compid) "NUMBER OF COMPUTERS" from employee E inner join Computer C on C.Compid = E.Compid where Make in ('Dell') group by dept;
+
